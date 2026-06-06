@@ -14,7 +14,8 @@ public enum TiposDePasta {
     }
     
     public double calcularTotal(double cantidad) throws PedidoInvalidoException{
-        return switch(this){
+       double total = 0;
+       switch(this){
             case RAVIOLES, AGNOLOTIS -> {
                 if(cantidad != (int) cantidad){
                     throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
@@ -22,7 +23,7 @@ public enum TiposDePasta {
                 if(cantidad <= 0){
                     throw new PedidoInvalidoException(" La cantidad de cajas de ser mayor a 0");
                 }
-                yield cantidad*precio;
+                total += cantidad*precio;
             }
             case FIDEOS_ALHUEVO, NIOQUIS -> {
                 if (cantidad <= 0){
@@ -31,9 +32,11 @@ public enum TiposDePasta {
                 if (cantidad > 10){
                     throw new PedidoInvalidoException("El peso no puede superar los 10 kg");
                 }
-                yield cantidad*precio;
+                total += cantidad*precio;
             }
         };
+        
+        return total;
     }
     
     
