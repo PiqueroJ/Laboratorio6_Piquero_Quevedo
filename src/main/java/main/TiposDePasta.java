@@ -13,31 +13,29 @@ public enum TiposDePasta {
         return precio;
     }
     
-    public double calcularTotal(double cantidad) throws PedidoInvalidoException{
-       double total = 0;
-       switch(this){
-            case RAVIOLES, AGNOLOTIS -> {
-                if(cantidad != (int) cantidad){
-                    throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
-                }
-                if(cantidad <= 0){
-                    throw new PedidoInvalidoException(" La cantidad de cajas de ser mayor a 0");
-                }
-                total += cantidad*precio;
-            }
-            case FIDEOS_AL_HUEVO, NIOQUIS -> {
-                if (cantidad <= 0){
-                    throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");
-                }
-                if (cantidad > 10){
-                    throw new PedidoInvalidoException("El peso no puede superar los 10 kg");
-                }
-                total += cantidad*precio;
-            }
+    public double calcularTotal(int cantidad) throws PedidoInvalidoException {
+        double total = 0;
+        if (cantidad !=  cantidad) {
+            throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
         }
-        
-        return total;
+        if (cantidad <= 0) {
+            throw new PedidoInvalidoException(" La cantidad de cajas de ser mayor a 0");
+        }
+        total += cantidad * precio;
+
+    return total;
     }
     
+    public double calcularTotal(double cantidad) throws PedidoInvalidoException {
+        double total = 0;
+        if (cantidad <= 0) {
+            throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");
+        }
+        if (cantidad > 10) {
+            throw new PedidoInvalidoException("El peso no puede superar los 10 kg");
+        }
+        total += cantidad * precio;
+        return total;
+    }
     
 }
