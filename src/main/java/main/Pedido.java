@@ -6,6 +6,6 @@ public class Pedido {
     private TiposDePasta pasta;
     private int cantidad;
     private double peso;
-    
+
     
 }
