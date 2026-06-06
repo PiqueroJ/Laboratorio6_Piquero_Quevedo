@@ -1,7 +1,9 @@
 package main;
 
+import java.util.Scanner;
+
 public class Cliente {
-   
+
     private String nombre;
     private String apellido;
     private String mail;
@@ -16,20 +18,38 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+    public Cliente() {
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.print("Ingrese el nombre: ");
+        String nomEntrada = teclado.nextLine();
+        ValidarTextoException.validarTexto(nomEntrada, "Nombre");
+        this.nombre = nomEntrada;
+
+        System.out.print("Ingrese el apellido: ");
+        String apeEntrada = teclado.nextLine();
+        ValidarTextoException.validarTexto(apeEntrada, "Apellido");
+        this.apellido = apeEntrada;
+
+        
+        System.out.print("Ingrese el mail: ");
+        this.mail = teclado.nextLine();
+
+        System.out.print("Ingrese el teléfono: ");
+        this.telefono = teclado.nextLine();
+
+        System.out.print("Ingrese la dirección: ");
+        this.direccion = teclado.nextLine();
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public String getApellido() {
         return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getMail() {
@@ -60,7 +80,5 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "nombre=" + nombre + ", apellido=" + apellido + ", mail=" + mail + ", telefono=" + telefono + ", direccion=" + direccion + '}';
     }
-    
-    
-    
+
 }

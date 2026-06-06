@@ -34,7 +34,7 @@ public enum TiposDePasta {
                 }
                 total += cantidad*precio;
             }
-        };
+        }
         
         return total;
     }
