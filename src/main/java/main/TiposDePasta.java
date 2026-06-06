@@ -1,7 +1,7 @@
 package main;
 
 public enum TiposDePasta {
-    FIDEOS_ALHUEVO(500), RAVIOLES(800), NIOQUIS(600), AGNOLOTIS(750);
+    FIDEOS_AL_HUEVO(500), RAVIOLES(800), NIOQUIS(600), AGNOLOTIS(750);
 
     private double precio;
 
