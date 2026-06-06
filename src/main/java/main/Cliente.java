@@ -26,12 +26,18 @@ public class Cliente {
         if (nomEntrada == null || nomEntrada.isEmpty()) {
         throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
+        if (!nomEntrada.matches("[a-zA-Z ]+")) {
+        throw new IllegalArgumentException("El nombre no puede contener números.");
+         }
         this.nombre = nomEntrada;
 
         System.out.print("Ingrese el apellido: ");
         String apeEntrada = teclado.nextLine();
         if (apeEntrada == null || apeEntrada.isEmpty()) {
         throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+        if (!nomEntrada.matches("[a-zA-Z ]+")) {
+        throw new IllegalArgumentException("El apellido no puede contener números.");
         }
         this.apellido = apeEntrada;
 
