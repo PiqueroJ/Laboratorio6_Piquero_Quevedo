@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Pedido {
     private Cliente datos;
     private MedioDeVentas medio;
@@ -15,45 +17,32 @@ public class Pedido {
         this.peso = peso;
     }
 
-    public Cliente getDatos() {
-        return datos;
+    public Pedido() {
+        Scanner teclado = new Scanner(System.in);
+        int res = 0;
+        
+        /*System.out.println("Ingrese el medio de venta[ TELEFONO:1 | PAGINA_WEB:2 | REDES_SOCIALES:3 ]: ");
+        res = teclado.nextInt();
+        if(res < 1 || res > 3){
+            throw new IllegalArgumentException("El numero ingresado es invalido");
+        }
+        switch(res){
+            case 1 -> this.medio = TELEFONO;
+            case 2 -> this.medio = PAGINA_WEB;
+            case 3 -> this.medio = REDES_SOCIALES;
+        }*/
+               
+        
+        System.out.println("Cuantas cajas quiere: ");
+        this.cantidad = teclado.nextInt();
+        
+        System.out.println("Cuantos kg quiere: ");
+        this.peso = teclado.nextDouble();
+        
+        
     }
 
-    public void setDatos(Cliente datos) {
-        this.datos = datos;
-    }
-
-    public MedioDeVentas getMedio() {
-        return medio;
-    }
-
-    public void setMedio(MedioDeVentas medio) {
-        this.medio = medio;
-    }
-
-    public TiposDePasta getPasta() {
-        return pasta;
-    }
-
-    public void setPasta(TiposDePasta pasta) {
-        this.pasta = pasta;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
+    
     
     public void mostrarPedido(){
         datos.toString();
