@@ -23,11 +23,17 @@ public class Cliente {
 
         System.out.print("Ingrese el nombre: ");
         String nomEntrada = teclado.nextLine();
+        /*if (nombreEntrada == null || nomEntrada.isEmpty()) {
+        throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }*/
         ValidarTextoException.validarTexto(nomEntrada, "Nombre");
         this.nombre = nomEntrada;
 
         System.out.print("Ingrese el apellido: ");
         String apeEntrada = teclado.nextLine();
+        /*if (apeEntrada == null || apeEntrada.isEmpty()) {
+        throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }*/
         ValidarTextoException.validarTexto(apeEntrada, "Apellido");
         this.apellido = apeEntrada;
 
