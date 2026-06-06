@@ -25,7 +25,7 @@ public enum TiposDePasta {
                 }
                 total += cantidad*precio;
             }
-            case FIDEOS_ALHUEVO, NIOQUIS -> {
+            case FIDEOS_AL_HUEVO, NIOQUIS -> {
                 if (cantidad <= 0){
                     throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");
                 }
