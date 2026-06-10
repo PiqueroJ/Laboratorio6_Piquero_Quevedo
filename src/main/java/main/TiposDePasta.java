@@ -13,7 +13,9 @@ public enum TiposDePasta {
         return precio;
     }
     
-    public double calcularTotal(int cantidad) throws PedidoInvalidoException {
+    // es mejor calcuar el total con el TipoDePasta?
+    public double calcularTotalCajas() throws PedidoInvalidoException {
+        int cantidad = 0; 
         double total = 0;
         if (cantidad !=  cantidad) {
             throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
@@ -26,7 +28,8 @@ public enum TiposDePasta {
     return total;
     }
     
-    public double calcularTotal(double cantidad) throws PedidoInvalidoException {
+    public double calcularTotalKilogramos() throws PedidoInvalidoException {
+        double cantidad = 0;
         double total = 0;
         if (cantidad <= 0) {
             throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");

@@ -11,7 +11,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         double total;
         
-        
+        //ARITMETHIC EXCEPTION: en cuantas cuotas quiere pagar el envio?
         
     }
 }

@@ -15,6 +15,8 @@ public class Pedido {
         int menu = 0;
         System.out.println("Ingrese el medio de venta[ TELEFONO:1 | PAGINA_WEB:2 | REDES_SOCIALES:3 ]: ");
         menu = teclado.nextInt();
+        
+        // PONERLO EN UN METODO PARA QUE SEA MEJOR
         if (menu < 1 || menu > 3) {
             throw new IllegalArgumentException("El numero ingresado es invalido");
         }
@@ -27,46 +29,9 @@ public class Pedido {
                 this.medio = MedioDeVentas.REDES_SOCIALES;
         }
         
-/*
-        do {
-            TiposDePasta pastaPedida;
-            boolean cajas = true;
-
-            System.out.println("Que tipo de fideos quiere? " + "\n" + "[ FIDEOS AL HUEVO: 1 | RAVIOLES: 2 | ÑOQUIS: 3 | AGNOLOTIS: 4 ]: " + "\n" + "Pulse 0 para acabar de pedir");
-            menu = teclado.nextInt();
-            if (menu < 0 || menu > 4) {
-                throw new IllegalArgumentException("El numero ingresado es invalido");
-            }
-            switch (menu) {
-                case 1 ->
-                    pastaPedida = TiposDePasta.FIDEOS_AL_HUEVO;
-                case 2 ->
-                    pastaPedida = TiposDePasta.RAVIOLES;
-                case 3 -> {
-                    pastaPedida = TiposDePasta.NIOQUIS;
-                    cajas = false;
-                }
-                case 4 -> {
-                    pastaPedida = TiposDePasta.AGNOLOTIS;
-                    cajas = false;
-                }
-            }
-
-            if (cajas) {
-                System.out.println("Cuantas cajas quiere: ");
-                this.cantidad = teclado.nextInt();
-                if (cantidad < 1 ) {
-                    throw new IllegalArgumentException("El nombre no puede estar vacío.");
-                }
-
-            } else {
-                System.out.println("Cuantos kg quiere: ");
-                this.peso = teclado.nextDouble();
-            }
-
-        } while (menu != 0);*/
-
         int menuPasta = -1;
+        double total = 0;
+
         do {
             try {
                 System.out.println("\n--- MENÚ DE PASTAS (0 para finalizar) ---");
@@ -82,33 +47,16 @@ public class Pedido {
                 TiposDePasta pastaPedida = null;
                 boolean llevaCajas = false;
 
+                
                 // Asignación según consigna: 
                 // Cajas: Ravioles(2) y Agnolotis(4). Kg: Fideos(1) y Ñoquis(3)
                 switch (menuPasta) {
-                    case 1 -> pastaPedida = TiposDePasta.FIDEOS_AL_HUEVO;
-                    case 2 -> { pastaPedida = TiposDePasta.RAVIOLES; llevaCajas = true; }
-                    case 3 -> pastaPedida = TiposDePasta.NIOQUIS;
-                    case 4 -> { pastaPedida = TiposDePasta.AGNOLOTIS; llevaCajas = true; }
+                    // Como calcular la cantidad sin morir
+                    case 1 -> { pastaPedida = TiposDePasta.FIDEOS_AL_HUEVO; total += TiposDePasta.FIDEOS_AL_HUEVO.calcularTotalKilogramos(); }
+                    case 2 -> { pastaPedida = TiposDePasta.RAVIOLES; total += TiposDePasta.RAVIOLES.calcularTotalCajas(); }
+                    case 3 -> { pastaPedida = TiposDePasta.NIOQUIS; total += TiposDePasta.NIOQUIS.calcularTotalKilogramos();}
+                    case 4 -> { pastaPedida = TiposDePasta.AGNOLOTIS; total += TiposDePasta.AGNOLOTIS.calcularTotalCajas(); }
                 }
-
-                int cantidadCajas = 0;
-                double cantidadKg = 0.0;
-
-                if (llevaCajas) {
-                    System.out.print("¿Cuántas cajas quiere?: ");
-                    cantidadCajas = teclado.nextInt(); // Lanza InputMismatchException si ponen coma o letras
-                    
-                    // Validamos con nuestra excepción personalizada
-                    ValidadorPedido.validarCajas(cantidadCajas);
-                } else {
-                    System.out.print("¿Cuántos kg quiere?: ");
-                    cantidadKg = teclado.nextDouble(); // Lanza InputMismatchException si ponen letras
-                    
-                    // Validamos con nuestra excepción personalizada
-                    ValidadorPedido.validarPeso(cantidadKg);
-                }
-
-                //FALTA AGREGAR EL PEDIDO
 
             } catch (InputMismatchException e) {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
