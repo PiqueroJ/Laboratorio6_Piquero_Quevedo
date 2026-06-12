@@ -9,6 +9,7 @@ public class Pedido {
     private MedioDeVentas medio;
     private ArrayList<TiposDePasta> pastas;
     private double total;
+    private int cuotas;
 
     public Pedido() {
         //INICIAMOS EL MENU DE LOS TIPOS DE PASTA
@@ -102,7 +103,16 @@ public class Pedido {
     }
 
     private void menuCuotas() {
-
+                Scanner teclado = new Scanner(System.in);
+                try{
+                double totalC;
+                System.out.println("En cuantas cuotas quiere pagar [1-6]");
+                cuotas = teclado.nextInt();
+                totalC = (total/cuotas);
+                System.out.println("Pagas en " + cuotas + " de " + totalC);
+                }catch(ArithmeticException e){
+                    System.out.println("No podes pagar en 0 cuotas");
+                }
     }
 
 }
