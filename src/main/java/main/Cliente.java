@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente {
@@ -9,6 +10,7 @@ public class Cliente {
     private String mail;
     private String telefono;
     private String direccion;
+    private ArrayList<Pedido> listaDePedidos;
 
     public Cliente(String nombre, String apellido, String mail, String telefono, String direccion) {
         this.nombre = nombre;
@@ -16,6 +18,7 @@ public class Cliente {
         this.mail = mail;
         this.telefono = telefono;
         this.direccion = direccion;
+        listaDePedidos = new ArrayList();
     }
 
     public Cliente() {
@@ -50,6 +53,8 @@ public class Cliente {
 
         System.out.print("Ingrese la dirección: ");
         this.direccion = teclado.nextLine();
+        
+        listaDePedidos = new ArrayList();
     }
 
     public String getNombre() {
@@ -84,6 +89,17 @@ public class Cliente {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+    
+    public void comprar(){
+        listaDePedidos.add(new Pedido());
+    }
+    
+    public void mostrarPedidos(){
+        for (Pedido ldp : listaDePedidos) {
+            ldp.mostrarPedido();
+            System.out.println("");
+        }
     }
 
     @Override
