@@ -13,21 +13,12 @@ public class Pedido {
         Scanner teclado = new Scanner(System.in);
 
         int menu = 0;
+        int res = 0;
         System.out.println("Ingrese el medio de venta[ TELEFONO:1 | PAGINA_WEB:2 | REDES_SOCIALES:3 ]: ");
         menu = teclado.nextInt();
         
         // PONERLO EN UN METODO PARA QUE SEA MEJOR
-        if (menu < 1 || menu > 3) {
-            throw new IllegalArgumentException("El numero ingresado es invalido");
-        }
-        switch (menu) {
-            case 1 ->
-                this.medio = MedioDeVentas.TELEFONO;
-            case 2 ->
-                this.medio = MedioDeVentas.PAGINA_WEB;
-            case 3 ->
-                this.medio = MedioDeVentas.REDES_SOCIALES;
-        }
+        res = menuMedioVenta(menu);
         
         int menuPasta = -1;
         double total = 0;
@@ -66,12 +57,33 @@ public class Pedido {
             }
 
         } while (menuPasta != 0);
+        
+        mostrarPedido(total);
     }
 
 
-    public void mostrarPedido() {
+    public void mostrarPedido(double total) {
         datos.toString();
         System.out.println("Medio de pago: " + medio);
+        System.out.println("Total del pedido: " + total);
     }
-
+    
+    public int menuMedioVenta(int menu){
+        int res = 0;
+        if (menu < 1 || menu > 3) {
+            throw new IllegalArgumentException("El numero ingresado es invalido");
+        }
+        switch (menu) {
+            case 1 ->{
+                this.medio = MedioDeVentas.TELEFONO;
+                res = 1; }
+            case 2 -> {
+                this.medio = MedioDeVentas.PAGINA_WEB;
+                res = 2; }
+            case 3 ->{
+                this.medio = MedioDeVentas.REDES_SOCIALES;
+                res = 3; }
+        }
+        return res;
+    }
 }
