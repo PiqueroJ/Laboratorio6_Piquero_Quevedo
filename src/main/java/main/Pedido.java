@@ -8,6 +8,7 @@ public class Pedido {
 
     private Cliente datos;
     private MedioDeVentas medio;
+    private double total;
 
     public Pedido() {
         Scanner teclado = new Scanner(System.in);
@@ -21,7 +22,6 @@ public class Pedido {
         res = menuMedioVenta(menu);
         
         int menuPasta = -1;
-        double total = 0;
 
         do {
             try {
@@ -55,14 +55,12 @@ public class Pedido {
             } catch (PedidoInvalidoException e) {
                 System.out.println("Error en el pedido: " + e.getMessage());
             }
-
         } while (menuPasta != 0);
         
-        mostrarPedido(total);
     }
 
 
-    public void mostrarPedido(double total) {
+    public void mostrarPedido() {
         datos.toString();
         System.out.println("Medio de pago: " + medio);
         System.out.println("Total del pedido: " + total);
