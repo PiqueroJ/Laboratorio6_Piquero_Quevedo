@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public enum TiposDePasta {
     FIDEOS_AL_HUEVO(500), RAVIOLES(800), NIOQUIS(600), AGNOLOTIS(750);
 
@@ -15,8 +17,11 @@ public enum TiposDePasta {
     
     // es mejor calcuar el total con el TipoDePasta?
     public double calcularTotalCajas() throws PedidoInvalidoException {
+        Scanner teclado = new Scanner(System.in);
         int cantidad = 0; 
         double total = 0;
+        System.out.println("Cuantas cajas quiere[Deven ser mas de 0]");
+        cantidad = teclado.nextInt();
         if (cantidad !=  cantidad) {
             throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
         }
@@ -29,8 +34,11 @@ public enum TiposDePasta {
     }
     
     public double calcularTotalKilogramos() throws PedidoInvalidoException {
+        Scanner teclado = new Scanner(System.in);
         double cantidad = 0;
         double total = 0;
+        System.out.println("Cuantos kg quiere[Deven ser entre 0-10]");
+        cantidad = teclado.nextDouble();
         if (cantidad <= 0) {
             throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");
         }
