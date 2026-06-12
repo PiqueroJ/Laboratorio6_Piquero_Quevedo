@@ -27,24 +27,23 @@ public class Cliente {
         System.out.print("Ingrese el nombre: ");
         String nomEntrada = teclado.nextLine();
         if (nomEntrada == null || nomEntrada.isEmpty()) {
-        throw new IllegalArgumentException("El nombre no puede estar vacío.");
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
         if (!nomEntrada.matches("[a-zA-Z ]+")) {
-        throw new IllegalArgumentException("El nombre no puede contener números.");
-         }
+            throw new IllegalArgumentException("El nombre no puede contener números.");
+        }
         this.nombre = nomEntrada;
 
         System.out.print("Ingrese el apellido: ");
         String apeEntrada = teclado.nextLine();
         if (apeEntrada == null || apeEntrada.isEmpty()) {
-        throw new IllegalArgumentException("El apellido no puede estar vacío.");
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
         }
         if (!nomEntrada.matches("[a-zA-Z ]+")) {
-        throw new IllegalArgumentException("El apellido no puede contener números.");
+            throw new IllegalArgumentException("El apellido no puede contener números.");
         }
         this.apellido = apeEntrada;
 
-        
         System.out.print("Ingrese el mail: ");
         this.mail = teclado.nextLine();
 
@@ -53,15 +52,13 @@ public class Cliente {
 
         System.out.print("Ingrese la dirección: ");
         this.direccion = teclado.nextLine();
-        
+
         listaDePedidos = new ArrayList();
     }
 
     public String getNombre() {
         return nombre;
     }
-
-
 
     public String getApellido() {
         return apellido;
@@ -90,15 +87,15 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    public void comprar(){
+
+    public void comprar() {
         Scanner teclado = new Scanner(System.in);
         boolean seguir = true;
         int confirmar;
-        
-        while (seguir){
+
+        while (seguir) {
             listaDePedidos.add(new Pedido());
-            
+
             System.out.println("¿Quiere realizar otro pedido?");
             System.out.println("[0] NO." + "\t" + "[1] SI.");
             confirmar = teclado.nextInt();
@@ -107,8 +104,8 @@ public class Cliente {
             }
         }
     }
-    
-    public void mostrarPedidos(){
+
+    public void mostrarPedidos() {
         for (Pedido ldp : listaDePedidos) {
             ldp.mostrarPedido();
             System.out.println("");
