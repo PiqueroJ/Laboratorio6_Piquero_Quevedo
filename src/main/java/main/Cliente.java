@@ -92,7 +92,20 @@ public class Cliente {
     }
     
     public void comprar(){
-        listaDePedidos.add(new Pedido());
+        Scanner teclado = new Scanner(System.in);
+        boolean seguir = true;
+        int confirmar;
+        
+        while (seguir){
+            listaDePedidos.add(new Pedido());
+            
+            System.out.println("¿Quiere realizar otro pedido?");
+            System.out.println("[0] NO." + "\t" + "[1] SI.");
+            confirmar = teclado.nextInt();
+            if (confirmar == 0) {
+                seguir = false;
+            }
+        }
     }
     
     public void mostrarPedidos(){
