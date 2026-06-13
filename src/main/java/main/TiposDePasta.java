@@ -22,7 +22,7 @@ public enum TiposDePasta {
         Scanner teclado = new Scanner(System.in);
         int cantidad = 0;
         double total = 0;
-        System.out.println("Cuantas cajas quiere[Deven ser mas de 0]");
+        System.out.println("Cuantas cajas quiere[Deben ser mas de 0]");
         cantidad = teclado.nextInt();
         if (cantidad != cantidad) {
             throw new PedidoInvalidoException(" La cantidad de cajas no puede tener coma");
@@ -39,7 +39,7 @@ public enum TiposDePasta {
         Scanner teclado = new Scanner(System.in);
         double cantidad = 0;
         double total = 0;
-        System.out.println("Cuantos kg quiere[Deven ser entre 0-10]");
+        System.out.println("Cuantos kg quiere[Deben ser entre 0-10]");
         cantidad = teclado.nextDouble();
         if (cantidad <= 0) {
             throw new PedidoInvalidoException(" El peso debe ser mayor a 0 kg");
@@ -56,10 +56,10 @@ public enum TiposDePasta {
         System.out.println(this.name());
         System.out.println(this.getPrecio());
         if (cajas != 0) {
-            System.out.println("Cajas: " + cajas);
+            System.out.println(cajas + " cajas");
         }
         if (kilogramos != 0) {
-            System.out.println("Kilogramos" + kilogramos);
+            System.out.println(kilogramos + "Kg");
         }
     }
 

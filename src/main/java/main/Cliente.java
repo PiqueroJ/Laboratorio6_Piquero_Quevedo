@@ -89,26 +89,13 @@ public class Cliente {
     }
 
     public void comprar() {
-        Scanner teclado = new Scanner(System.in);
-        boolean seguir = true;
-        int confirmar;
-
-        while (seguir) {
-            listaDePedidos.add(new Pedido());
-
-            System.out.println("¿Quiere realizar otro pedido?");
-            System.out.println("[0] NO." + "\t" + "[1] SI.");
-            confirmar = teclado.nextInt();
-            if (confirmar == 0) {
-                seguir = false;
-            }
-        }
+        listaDePedidos.add(new Pedido());
     }
 
     public void mostrarPedidos() {
         for (Pedido ldp : listaDePedidos) {
             ldp.mostrarPedido();
-            System.out.println("");
+            System.out.println("\n");
         }
     }
 

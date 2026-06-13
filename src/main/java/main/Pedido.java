@@ -23,11 +23,16 @@ public class Pedido {
     }
 
     public void mostrarPedido() {
-        System.out.println("Medio de pago: " + medio);
-        for (TiposDePasta pasta : pastas) {
-            pasta.mostrarPasta();
+        if (!pastas.isEmpty()) {
+            System.out.println("Medio de pago: " + medio);
+            for (TiposDePasta pasta : pastas) {
+                pasta.mostrarPasta();
+                System.out.println("");
+            }
+            System.out.println("Total del pedido: $" + total + " en " + cuotas + " cuotas de $" + total / cuotas);
+        } else {
+            System.out.println("No hay pastas");
         }
-        System.out.println("Total del pedido: " + total);
     }
 
     private void menuMedioVenta() {
@@ -53,12 +58,13 @@ public class Pedido {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
-                teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
             }
+            teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
         } while (menu < 1 || menu > 3);
     }
 
     private void menuPasta() {
+
         Scanner teclado = new Scanner(System.in);
         int menu = -1;
         pastas = new ArrayList();
@@ -95,24 +101,42 @@ public class Pedido {
 
             } catch (InputMismatchException e) {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
-                teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
             } catch (PedidoInvalidoException e) {
                 System.out.println("Error en el pedido: " + e.getMessage());
             }
-        } while (menu < 0 || menu > 3);
+            teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
+        } while (menu != 0);
     }
 
     private void menuCuotas() {
-                Scanner teclado = new Scanner(System.in);
-                try{
-                double totalC;
-                System.out.println("En cuantas cuotas quiere pagar [1-6]");
-                cuotas = teclado.nextInt();
-                totalC = (total/cuotas);
-                System.out.println("Pagas en " + cuotas + " de " + totalC);
-                }catch(ArithmeticException e){
+        if (!pastas.isEmpty()) {
+            Scanner teclado = new Scanner(System.in);
+            int seleccion = -1;
+            double totalC;
+
+            do {
+                try {
+                    System.out.println("En cuantas cuotas quiere pagar [0-6]: ");
+                    seleccion = teclado.nextInt();
+
+                    if (seleccion < 0 || seleccion > 6) {
+                        System.out.println("Error: Cantidad de cuotas inválida.");
+                    } else if (seleccion == 0) {
+                        // parece que con double la excepcion no sale tan facil asi que hay que forzarla
+                        throw new ArithmeticException();
+                    } else {
+                        totalC = this.total / seleccion;
+                        System.out.println("Pagas $" + this.total + " en " + this.cuotas + " cuotas de $" + totalC);
+                    }
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Debe ingresar un número entero válido.");
+                } catch (ArithmeticException e) {
                     System.out.println("No podes pagar en 0 cuotas");
                 }
+                teclado.nextLine();
+            } while (seleccion < 1 || seleccion > 6);
+            this.cuotas = seleccion;
+        }
     }
-
 }
