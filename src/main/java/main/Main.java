@@ -36,11 +36,14 @@ La excepción deberá utilizarse cuando la cantidad de cajas sea incorrecta o el
  */
 package main;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
         //Hardcode
         Cliente comprador = new Cliente("Jesus", "Quevedo", "mailfalso@gmail", "123456", "calle falsa");
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
         //Entrada manual
         //Cliente comprador = new Cliente();
