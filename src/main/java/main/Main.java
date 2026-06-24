@@ -36,6 +36,11 @@ La excepción deberá utilizarse cuando la cantidad de cajas sea incorrecta o el
  */
 package main;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Main {
@@ -58,5 +63,33 @@ public class Main {
 
         System.out.println("\n" + "Ahora " + comprador.getNombre() + " usará los recibos para ver la economía de su casa" + "\n");
         comprador.mostrarPedidos();
+        
     }
+    
+    public void serializacion(Pedido pedi){
+        try{
+            FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
+            ObjectOutputStream ost = new ObjectOutputStream(f);
+            ost.writeObject(pedi);
+            ost.flush();
+            ost.close();
+        }catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+        
+    public void deserializacion(){
+        try{
+            FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
+            ObjectInputStream ist = new ObjectInputStream(f);
+            Pedido pedi = (Pedido) ist.readObject();
+            System.out.println(pedi);
+            ist.close();
+        }catch (IOException e) {
+            System.err.println(e);
+        } catch (ClassNotFoundException e) {
+            System.err.println(e);
+        }
+    }
+    
 }
