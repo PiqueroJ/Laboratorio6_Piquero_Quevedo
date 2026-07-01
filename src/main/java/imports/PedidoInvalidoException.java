@@ -1,4 +1,4 @@
-package main;
+package imports;
 
 public class PedidoInvalidoException extends Exception {
 

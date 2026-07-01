@@ -39,14 +39,11 @@ package main;
 public class Main {
 
     public static void main(String[] args) {
-        //Hardcode
-        Cliente comprador = new Cliente("Jesus", "Quevedo", "mailfalso@gmail", "123456", "calle falsa");
-        //Entrada manual
-        //Cliente comprador = new Cliente();
-
+        //FABRICA DE PASTAS INICIADA
         FabricaDePastas fdp = new FabricaDePastas();
-        fdp.menu();
 
+        //LLEGA UN NUEVO CLIENTE
+        fdp.menu();
     }
 
 }

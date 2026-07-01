@@ -3,10 +3,13 @@
     Cliente: Juan Perez
     Canal: WEB
     Importe: 25000
-*/
+ */
 package main;
 
+import imports.MedioDeVentas;
+
 public class Venta {
+
     private int idPedido;
     private String nombreCliente;
     private MedioDeVentas medio;
@@ -18,7 +21,7 @@ public class Venta {
         this.medio = pedi.getMedio();
         this.importe = pedi.getTotal();
     }
-    
+
     public int getIdPedido() {
         return idPedido;
     }
@@ -34,5 +37,5 @@ public class Venta {
     public double getImporte() {
         return importe;
     }
-    
+
 }

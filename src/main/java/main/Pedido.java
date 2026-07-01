@@ -1,12 +1,16 @@
 package main;
 
+import imports.TiposDePasta;
+import imports.MedioDeVentas;
+import imports.PedidoInvalidoException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Pedido implements Serializable {
-    private static int contadorId = 0; 
+
+    private static int contadorId = 0;
 
     private int id;
     private MedioDeVentas medio;
@@ -17,7 +21,7 @@ public class Pedido implements Serializable {
     public Pedido() {
         //ID DEL PEDIDO
         this.id = contadorId++;
-        
+
         //INICIAMOS EL MENU DE LOS TIPOS DE PASTA
         menuMedioVenta();
 
@@ -165,7 +169,5 @@ public class Pedido implements Serializable {
     public int getCuotas() {
         return cuotas;
     }
-    
-    
-    
+
 }

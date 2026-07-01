@@ -76,7 +76,7 @@ public class FabricaDePastas {
         Cliente cliente = new Cliente();
         Pedido pedido = new Pedido();
         listaDePedidos.add(pedido);
-        listaDeVentas.add(new Venta(cliente,pedido));
+        listaDeVentas.add(new Venta(cliente, pedido));
     }
 
     private Pedido buscarPedido() {
