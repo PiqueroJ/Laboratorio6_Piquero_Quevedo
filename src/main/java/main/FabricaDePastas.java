@@ -68,7 +68,7 @@ public class FabricaDePastas {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
             }
             teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
-        } while (menu < 1 || menu > 8);
+        } while (menu != 8);
     }
 
     private void agregarPedido() {
