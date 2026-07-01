@@ -6,13 +6,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Pedido implements Serializable {
+    private static int contadorId = 0; 
 
+    private int id;
     private MedioDeVentas medio;
     private ArrayList<TiposDePasta> pastas;
     private double total;
     private int cuotas;
 
     public Pedido() {
+        //ID DEL PEDIDO
+        this.id = contadorId++;
+        
         //INICIAMOS EL MENU DE LOS TIPOS DE PASTA
         menuMedioVenta();
 
