@@ -59,7 +59,7 @@ public class FabricaDePastas {
                     case 5 ->
                         exportarPedidos();
                     case 6 ->
-                        guardarPedidos(listaDePedidos);
+                        guardarPedidos();
                     case 7 ->
                         recuperarPedidos();
 
@@ -121,12 +121,12 @@ public class FabricaDePastas {
 
     }
 
-    private void guardarPedidos(ArrayList<Pedido> pedi) {
+    private void guardarPedidos() {
         ObjectOutputStream ost = null;
         try {
             FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
             ost = new ObjectOutputStream(f);
-            ost.writeObject(pedi);
+            ost.writeObject(listaDePedidos);
             ost.flush();
         } catch (IOException e) {
             System.err.println(e);
@@ -146,8 +146,8 @@ public class FabricaDePastas {
         try {
             FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
             ist = new ObjectInputStream(f);
-            Pedido pedi = (Pedido) ist.readObject();
-            System.out.println(pedi);
+            listaDePedidos = (ArrayList<Pedido>) ist.readObject();
+            System.out.println(listaDePedidos);
         } catch (IOException e) {
             System.err.println(e);
         } catch (ClassNotFoundException e) {
