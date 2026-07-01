@@ -37,5 +37,12 @@ public class Venta {
     public double getImporte() {
         return importe;
     }
+    
+    public String obtenerFormatoTexto() {
+    return "Pedido: " + this.idPedido + "\n" +
+           "Cliente: " + this.nombreCliente + "\n" +
+           "Canal: " + this.medio + "\n" +
+           "Importe: " + this.importe + "\n"; // Deja un salto de línea al final
+}
 
 }

@@ -1,0 +1,5 @@
+Pedido: 0
+Cliente: Juan Piquero
+Canal: REDES_SOCIALES
+Importe: 2400.0
+
