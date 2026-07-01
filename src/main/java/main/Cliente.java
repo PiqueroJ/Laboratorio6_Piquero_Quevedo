@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 
     private String nombre;
     private String apellido;

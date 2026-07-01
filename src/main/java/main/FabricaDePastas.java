@@ -38,7 +38,7 @@ public class FabricaDePastas {
                 System.out.println("6. Guardar pedidos (Serialización)");
                 System.out.println("7. Recuperar pedidos (Deserialización)");
                 System.out.println("8. Salir");
-                System.out.println("Opción: ");
+                System.out.print("Opción: ");
                 menu = teclado.nextInt();
 
                 if (menu < 1 || menu > 8) {
@@ -48,11 +48,11 @@ public class FabricaDePastas {
                 switch (menu) {
                     case 1 ->
                         agregarPedido();
-                    case 2 ->
-                        {Pedido buscado = buscarPedido();
+                    case 2 -> {
+                        Pedido buscado = buscarPedido();
                         buscado.mostrarPedido();
-                        }
-                    case 3->
+                    }
+                    case 3 ->
                         listarPedidos();
                     case 4 ->
                         eliminarPedido();
@@ -94,15 +94,14 @@ public class FabricaDePastas {
             }
             teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
         } while (id < 1);
-        
-        
-        if(listaDePedidos.get(id-1) == null){
+
+        if (listaDePedidos.get(id - 1) == null) {
             System.out.println("No existe");
         } else {
-            buscado = listaDePedidos.get(id-1);
+            buscado = listaDePedidos.get(id - 1);
             buscado.mostrarPedido();
         }
-        
+
         return buscado;
     }
 
@@ -114,7 +113,10 @@ public class FabricaDePastas {
     }
 
     private void eliminarPedido() {
-        listaDePedidos.remove(buscarPedido());
+        Pedido aBorrar = buscarPedido();
+        if (aBorrar != null) {
+            listaDePedidos.remove(aBorrar);
+        }
     }
 
     private void exportarPedidos() {

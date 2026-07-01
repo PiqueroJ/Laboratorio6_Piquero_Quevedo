@@ -36,60 +36,17 @@ La excepción deberá utilizarse cuando la cantidad de cajas sea incorrecta o el
  */
 package main;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
         //Hardcode
         Cliente comprador = new Cliente("Jesus", "Quevedo", "mailfalso@gmail", "123456", "calle falsa");
-        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-
         //Entrada manual
         //Cliente comprador = new Cliente();
-        System.out.println("\n" + comprador.getNombre() + " viene a la tienda a comprar, al comprar ya le ofrecen el menú" + "\n");
-        comprador.comprar();
 
-        System.out.println("\n" + "A " + comprador.getNombre() + " le gustaron tanto que fue a comprar más para la semana" + "\n");
-        comprador.comprar();
+        FabricaDePastas fdp = new FabricaDePastas();
+        fdp.menu();
 
-        System.out.println("\n" + "Días después viene a comprar" + "\n");
-        comprador.comprar();
+    }
 
-        System.out.println("\n" + "Ahora " + comprador.getNombre() + " usará los recibos para ver la economía de su casa" + "\n");
-        comprador.mostrarPedidos();
-        
-    }
-    
-    public void serializacion(Pedido pedi){
-        try{
-            FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
-            ObjectOutputStream ost = new ObjectOutputStream(f);
-            ost.writeObject(pedi);
-            ost.flush();
-            ost.close();
-        }catch (IOException e) {
-            System.err.println(e);
-        }
-    }
-        
-    public void deserializacion(){
-        try{
-            FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
-            ObjectInputStream ist = new ObjectInputStream(f);
-            Pedido pedi = (Pedido) ist.readObject();
-            System.out.println(pedi);
-            ist.close();
-        }catch (IOException e) {
-            System.err.println(e);
-        } catch (ClassNotFoundException e) {
-            System.err.println(e);
-        }
-    }
-    
 }
