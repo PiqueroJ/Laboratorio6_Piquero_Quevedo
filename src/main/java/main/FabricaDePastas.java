@@ -16,12 +16,9 @@ public class FabricaDePastas {
 
     public FabricaDePastas() {
         this.listaDePedidos = new ArrayList();
-        
+
     }
 
-    
-    
-    
     public String getNombre() {
         return nombre;
     }
@@ -53,17 +50,17 @@ public class FabricaDePastas {
                         agregarPedido();
                     case 2 ->
                         buscarPedido();
-                    case 3->
+                    case 3 ->
                         listarPedidos();
-                    case 4->
+                    case 4 ->
                         eliminarPedido();
                     case 5 ->
                         exportarPedidos();
                     case 6 ->
                         guardarPedidos(listaDePedidos);
-                    case 7->
+                    case 7 ->
                         recuperarPedidos();
-                        
+
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
@@ -77,7 +74,7 @@ public class FabricaDePastas {
     }
 
     private void buscarPedido() {
-        
+
     }
 
     private void listarPedidos() {
@@ -88,7 +85,7 @@ public class FabricaDePastas {
     }
 
     private void eliminarPedido() {
-        
+
     }
 
     private void exportarPedidos() {
@@ -96,31 +93,44 @@ public class FabricaDePastas {
     }
 
     private void guardarPedidos(ArrayList<Pedido> pedi) {
-        try{
+        ObjectOutputStream ost = null;
+        try {
             FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
-            ObjectOutputStream ost = new ObjectOutputStream(f);
+            ost = new ObjectOutputStream(f);
             ost.writeObject(pedi);
             ost.flush();
-            ost.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e);
+        } finally {
+            if (ost != null) {
+                try {
+                    ost.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
         }
     }
 
     private void recuperarPedidos() {
-       try{
+        ObjectInputStream ist = null;
+        try {
             FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
-            ObjectInputStream ist = new ObjectInputStream(f);
+            ist = new ObjectInputStream(f);
             Pedido pedi = (Pedido) ist.readObject();
             System.out.println(pedi);
-            ist.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e);
         } catch (ClassNotFoundException e) {
             System.err.println(e);
+        } finally {
+            if (ist != null) {
+                try {
+                    ist.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
         }
     }
 }
-    
-
-
