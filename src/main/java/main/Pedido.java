@@ -1,10 +1,11 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Pedido {
+public class Pedido implements Serializable{
 
     private MedioDeVentas medio;
     private ArrayList<TiposDePasta> pastas;
