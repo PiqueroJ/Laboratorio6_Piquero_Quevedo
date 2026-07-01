@@ -47,7 +47,9 @@ public class FabricaDePastas {
                     case 1 ->
                         agregarPedido();
                     case 2 ->
-                        buscarPedido();
+                        {Pedido buscado = buscarPedido();
+                        buscado.mostrarPedido();
+                        }
                     case 3->
                         listarPedidos();
                     case 4->
@@ -64,15 +66,42 @@ public class FabricaDePastas {
                 System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
             }
             teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
-        } while (menu < 1 || menu > 3);
+        } while (menu < 1 || menu > 8);
     }
 
     private void agregarPedido() {
         listaDePedidos.add(new Pedido());
     }
 
-    private void buscarPedido() {
+    private Pedido buscarPedido() {
+        Scanner teclado = new Scanner(System.in);
+        Pedido buscado = null;
+        int id = -1;
+
+        do {
+            try {
+                System.out.println("Pedido a buscar:");
+                id = teclado.nextInt();
+
+                if (id < 1) {
+                    System.out.println("El numero ingresado es invalido");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
+            }
+            teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
+        } while (id < 1);
         
+        
+        if(listaDePedidos.get(id-1) == null){
+            System.out.println("No existe");
+        } else {
+            buscado = listaDePedidos.get(id-1);
+            buscado.mostrarPedido();
+        }
+        
+        return buscado;
     }
 
     private void listarPedidos() {
@@ -83,7 +112,7 @@ public class FabricaDePastas {
     }
 
     private void eliminarPedido() {
-        
+        listaDePedidos.remove(buscarPedido());
     }
 
     private void exportarPedidos() {
