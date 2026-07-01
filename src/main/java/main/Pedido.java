@@ -145,4 +145,27 @@ public class Pedido implements Serializable {
             this.cuotas = seleccion;
         }
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public MedioDeVentas getMedio() {
+        return medio;
+    }
+
+    public ArrayList<TiposDePasta> getPastas() {
+        return pastas;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public int getCuotas() {
+        return cuotas;
+    }
+    
+    
+    
 }

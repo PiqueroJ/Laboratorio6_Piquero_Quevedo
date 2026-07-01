@@ -12,11 +12,12 @@ import java.util.Scanner;
 public class FabricaDePastas {
 
     private String nombre = "Piquedo S.A.";
+    private ArrayList<Venta> listaDeVentas;
     private ArrayList<Pedido> listaDePedidos;
 
     public FabricaDePastas() {
+        this.listaDeVentas = new ArrayList();
         this.listaDePedidos = new ArrayList();
-
     }
 
     public String getNombre() {
@@ -72,7 +73,10 @@ public class FabricaDePastas {
     }
 
     private void agregarPedido() {
-        listaDePedidos.add(new Pedido());
+        Cliente cliente = new Cliente();
+        Pedido pedido = new Pedido();
+        listaDePedidos.add(pedido);
+        listaDeVentas.add(new Venta(cliente,pedido));
     }
 
     private Pedido buscarPedido() {
@@ -95,7 +99,7 @@ public class FabricaDePastas {
             teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
         } while (id < 1);
 
-        if (listaDePedidos.get(id - 1) == null) {
+        if (listaDeVentas.get(id - 1) == null) {
             System.out.println("No existe");
         } else {
             buscado = listaDePedidos.get(id - 1);
@@ -128,7 +132,7 @@ public class FabricaDePastas {
         try {
             FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
             ost = new ObjectOutputStream(f);
-            ost.writeObject(listaDePedidos);
+            ost.writeObject(listaDeVentas);
             ost.flush();
         } catch (IOException e) {
             System.err.println(e);
@@ -148,8 +152,8 @@ public class FabricaDePastas {
         try {
             FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
             ist = new ObjectInputStream(f);
-            listaDePedidos = (ArrayList<Pedido>) ist.readObject();
-            System.out.println(listaDePedidos);
+            listaDeVentas = (ArrayList<Venta>) ist.readObject();
+            System.out.println(listaDeVentas);
         } catch (IOException e) {
             System.err.println(e);
         } catch (ClassNotFoundException e) {
