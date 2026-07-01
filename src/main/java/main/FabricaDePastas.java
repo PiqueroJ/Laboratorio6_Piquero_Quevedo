@@ -1,5 +1,10 @@
 package main;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -55,7 +60,7 @@ public class FabricaDePastas {
                     case 5 ->
                         exportarPedidos();
                     case 6 ->
-                        guardarPedidos();
+                        guardarPedidos(listaDePedidos);
                     case 7->
                         recuperarPedidos();
                         
@@ -90,12 +95,32 @@ public class FabricaDePastas {
 
     }
 
-    private void guardarPedidos() {
-
+    private void guardarPedidos(ArrayList<Pedido> pedi) {
+        try{
+            FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
+            ObjectOutputStream ost = new ObjectOutputStream(f);
+            ost.writeObject(pedi);
+            ost.flush();
+            ost.close();
+        }catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
     private void recuperarPedidos() {
-
+       try{
+            FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");
+            ObjectInputStream ist = new ObjectInputStream(f);
+            Pedido pedi = (Pedido) ist.readObject();
+            System.out.println(pedi);
+            ist.close();
+        }catch (IOException e) {
+            System.err.println(e);
+        } catch (ClassNotFoundException e) {
+            System.err.println(e);
+        }
     }
-
 }
+    
+
+
