@@ -7,8 +7,10 @@
 package main;
 
 import imports.MedioDeVentas;
+import java.io.Serializable;
 
-public class Venta {
+public class Venta implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private int idPedido;
     private String nombreCliente;
