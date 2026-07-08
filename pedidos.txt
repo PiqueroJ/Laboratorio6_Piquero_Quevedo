@@ -1,10 +1,10 @@
 Pedido: 0
 Cliente: Juan Piquero
-Canal: TELEFONO
-Importe: 2400.0
+Canal: PAGINA_WEB
+Importe: 1500.0
 
-Pedido: 0
+Pedido: 1
 Cliente: Pepe Aguirre
 Canal: REDES_SOCIALES
-Importe: 2400.0
+Importe: 3750.0
 
