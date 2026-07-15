@@ -41,9 +41,10 @@ public class Main {
     public static void main(String[] args) {
         //FABRICA DE PASTAS INICIADA
         FabricaDePastas fdp = new FabricaDePastas();
-
+        MenuPrincipal menu = new MenuPrincipal(fdp);
+        
         //LLEGA UN NUEVO CLIENTE
-        fdp.menu();
+        menu.iniciar();
     }
 
 }

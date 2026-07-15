@@ -2,11 +2,8 @@ package main;
 
 import imports.TiposDePasta;
 import imports.MedioDeVentas;
-import imports.PedidoInvalidoException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Pedido implements Serializable {
 
@@ -18,18 +15,12 @@ public class Pedido implements Serializable {
     private double total;
     private int cuotas;
 
-    public Pedido() {
-        //ID DEL PEDIDO
+    public Pedido(MedioDeVentas medio, ArrayList<TiposDePasta> pastas, double total, int cuotas) {
         this.id = contadorId++;
-
-        //INICIAMOS EL MENU DE LOS TIPOS DE PASTA
-        menuMedioVenta();
-
-        //INICIAMOS EL MENU DE PASTA
-        menuPasta();
-
-        //FINALIZAMOS CON LAS CUOTAS
-        menuCuotas();
+        this.medio = medio;
+        this.pastas = pastas;
+        this.total = total;
+        this.cuotas = cuotas;
     }
 
     public void mostrarPedido() {
@@ -45,110 +36,7 @@ public class Pedido implements Serializable {
         }
     }
 
-    private void menuMedioVenta() {
-        Scanner teclado = new Scanner(System.in);
-        int menu = -1;
-
-        do {
-            try {
-                System.out.println("Ingrese el medio de venta[ TELEFONO:1 | PAGINA_WEB:2 | REDES_SOCIALES:3 ]: ");
-                menu = teclado.nextInt();
-
-                if (menu < 1 || menu > 3) {
-                    System.out.println("El numero ingresado es invalido");
-                }
-
-                switch (menu) {
-                    case 1 ->
-                        this.medio = MedioDeVentas.TELEFONO;
-                    case 2 ->
-                        this.medio = MedioDeVentas.PAGINA_WEB;
-                    case 3 ->
-                        this.medio = MedioDeVentas.REDES_SOCIALES;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
-            }
-            teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
-        } while (menu < 1 || menu > 3);
-    }
-
-    private void menuPasta() {
-
-        Scanner teclado = new Scanner(System.in);
-        int menu = -1;
-        pastas = new ArrayList();
-
-        do {
-            try {
-                System.out.println("\n--- MENÚ DE PASTAS (0 para finalizar) ---");
-                System.out.println("[ FIDEOS AL HUEVO: 1 | RAVIOLES: 2 | ÑOQUIS: 3 | AGNOLOTIS: 4 ]");
-                menu = teclado.nextInt();
-
-                if (menu < 0 || menu > 4) {
-                    System.out.println("Opción de pasta inválida (Debe ser de 0 a 4).");
-                }
-
-                switch (menu) {
-                    // Como calcular la cantidad sin morir
-                    case 1 -> {
-                        pastas.add(TiposDePasta.FIDEOS_AL_HUEVO);
-                        total += TiposDePasta.FIDEOS_AL_HUEVO.calcularTotalKilogramos();
-                    }
-                    case 2 -> {
-                        pastas.add(TiposDePasta.RAVIOLES);
-                        total += TiposDePasta.RAVIOLES.calcularTotalCajas();
-                    }
-                    case 3 -> {
-                        pastas.add(TiposDePasta.NIOQUIS);
-                        total += TiposDePasta.NIOQUIS.calcularTotalKilogramos();
-                    }
-                    case 4 -> {
-                        pastas.add(TiposDePasta.AGNOLOTIS);
-                        total += TiposDePasta.AGNOLOTIS.calcularTotalCajas();
-                    }
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Tipo de dato incorrecto (Ingresó letras o formato numérico inválido).");
-            } catch (PedidoInvalidoException e) {
-                System.out.println("Error en el pedido: " + e.getMessage());
-            }
-            teclado.nextLine(); // Limpiamos el buffer del Scanner para evitar bucle infinito
-        } while (menu != 0);
-    }
-
-    private void menuCuotas() {
-        if (!pastas.isEmpty()) {
-            Scanner teclado = new Scanner(System.in);
-            int seleccion = -1;
-            double totalC;
-
-            do {
-                try {
-                    System.out.println("En cuantas cuotas quiere pagar [0-6]: ");
-                    seleccion = teclado.nextInt();
-
-                    if (seleccion < 0 || seleccion > 6) {
-                        System.out.println("Error: Cantidad de cuotas inválida.");
-                    } else if (seleccion == 0) {
-                        // parece que con double la excepcion no sale tan facil asi que hay que forzarla
-                        throw new ArithmeticException();
-                    } else {
-                        totalC = this.total / seleccion;
-                        System.out.println("Pagas $" + this.total + " en " + this.cuotas + " cuotas de $" + totalC);
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.out.println("Error: Debe ingresar un número entero válido.");
-                } catch (ArithmeticException e) {
-                    System.out.println("No podes pagar en 0 cuotas");
-                }
-                teclado.nextLine();
-            } while (seleccion < 1 || seleccion > 6);
-            this.cuotas = seleccion;
-        }
-    }
+    
 
     public int getId() {
         return id;
