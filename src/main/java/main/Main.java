@@ -36,13 +36,15 @@ La excepción deberá utilizarse cuando la cantidad de cajas sea incorrecta o el
  */
 package main;
 
+import imports.MenuPrincipal;
+
 public class Main {
 
     public static void main(String[] args) {
         //FABRICA DE PASTAS INICIADA
         FabricaDePastas fdp = new FabricaDePastas();
         MenuPrincipal menu = new MenuPrincipal(fdp);
-        
+
         //LLEGA UN NUEVO CLIENTE
         menu.iniciar();
     }

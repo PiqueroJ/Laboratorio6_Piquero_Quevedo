@@ -12,14 +12,18 @@ import java.util.ArrayList;
 import main.Venta;
 
 public class GestorArchivos {
+
     private static final String RUTA_TXT = "pedidos.txt";
     private static final String RUTA_DAT = "src/main/resources/pedidos.dat";
 
-        private void exportarPedidos() {
+    public GestorArchivos() {
+    }
+
+    
+    
+    public void exportarPedidos() {
         String nombreArchivo = "pedidos.txt";
-        try (FileWriter fw = new FileWriter(nombreArchivo);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter pw = new PrintWriter(bw)) {
+        try (FileWriter fw = new FileWriter(nombreArchivo); BufferedWriter bw = new BufferedWriter(fw); PrintWriter pw = new PrintWriter(bw)) {
 
             // Recorremos la lista de elementos
             for (Venta v : listaDeVentas) {
@@ -35,8 +39,7 @@ public class GestorArchivos {
         }
     }
 
-
-    private void guardarPedidos() {
+    public void guardarPedidos() {
         ObjectOutputStream ost = null;
         try {
             FileOutputStream f = new FileOutputStream("src/main/resources/pedidos.dat");
@@ -56,7 +59,7 @@ public class GestorArchivos {
         }
     }
 
-    private void recuperarPedidos() {
+    public void recuperarPedidos() {
         ObjectInputStream ist = null;
         try {
             FileInputStream f = new FileInputStream("src/main/resources/pedidos.dat");

@@ -9,7 +9,8 @@ package main;
 import imports.MedioDeVentas;
 import java.io.Serializable;
 
-public class Venta implements Serializable{
+public class Venta implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private int idPedido;
@@ -39,12 +40,12 @@ public class Venta implements Serializable{
     public double getImporte() {
         return importe;
     }
-    
+
     public String obtenerFormatoTexto() {
-    return "Pedido: " + this.idPedido + "\n" +
-           "Cliente: " + this.nombreCliente + "\n" +
-           "Canal: " + this.medio + "\n" +
-           "Importe: " + this.importe + "\n"; // Deja un salto de línea al final
-}
+        return "Pedido: " + this.idPedido + "\n"
+                + "Cliente: " + this.nombreCliente + "\n"
+                + "Canal: " + this.medio + "\n"
+                + "Importe: " + this.importe + "\n"; // Deja un salto de línea al final
+    }
 
 }

@@ -2,7 +2,6 @@ package main;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Cliente implements Serializable {
 
@@ -19,41 +18,6 @@ public class Cliente implements Serializable {
         this.mail = mail;
         this.telefono = telefono;
         this.direccion = direccion;
-        listaDePedidos = new ArrayList();
-    }
-
-    public Cliente() {
-        Scanner teclado = new Scanner(System.in);
-
-        System.out.print("Ingrese el nombre: ");
-        String nomEntrada = teclado.nextLine();
-        if (nomEntrada == null || nomEntrada.isEmpty()) {
-            throw new IllegalArgumentException("El nombre no puede estar vacío.");
-        }
-        if (!nomEntrada.matches("[a-zA-Z ]+")) {
-            throw new IllegalArgumentException("El nombre no puede contener números.");
-        }
-        this.nombre = nomEntrada;
-
-        System.out.print("Ingrese el apellido: ");
-        String apeEntrada = teclado.nextLine();
-        if (apeEntrada == null || apeEntrada.isEmpty()) {
-            throw new IllegalArgumentException("El apellido no puede estar vacío.");
-        }
-        if (!nomEntrada.matches("[a-zA-Z ]+")) {
-            throw new IllegalArgumentException("El apellido no puede contener números.");
-        }
-        this.apellido = apeEntrada;
-
-        System.out.print("Ingrese el mail: ");
-        this.mail = teclado.nextLine();
-
-        System.out.print("Ingrese el teléfono: ");
-        this.telefono = teclado.nextLine();
-
-        System.out.print("Ingrese la dirección: ");
-        this.direccion = teclado.nextLine();
-
         listaDePedidos = new ArrayList();
     }
 
